@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const artist = new mongoose.Schema({
-    name : {
+    _id : {
         type : String,
         required : true
     },

@@ -24,7 +24,7 @@ router.get('/addArtist', async(req,res)=>{
 
 router.post('/addArtist', async(req,res)=>{
     const data = new artistSchema({
-        name: req.body.name,
+        _id: req.body.name,
         Dob: req.body.dob,
         Bio: req.body.bio
     })

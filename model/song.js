@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const song = new mongoose.Schema({
-    name : {
+    _id : {
         type : String,
         required : true
     },
@@ -9,11 +9,11 @@ const song = new mongoose.Schema({
         type : String,
         required : true
     },
-    cover : {
+    cloudinaryId : {
         type : String,
         required : true
     },
-    cloudinary_id : {
+    url : {
         type : String,
         required : true
     },

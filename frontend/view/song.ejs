@@ -11,6 +11,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spotify</title>
+  <style>
+    img{      
+      max-width: fit-content;
+      max-height: fit-content;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      width: 150px;
+    }
+  </style>
 </head>
 
 <body>
@@ -32,9 +42,9 @@
     <thead>
       <tr>
         <th scope="col">Name</th>
-        <th scope="col">dor</th>
-        <th scope="col">artist</th>
-        <th scope="col">cover</th>
+        <th scope="col">Artists</th>
+        <th scope="col">Date of release</th>
+        <th scope="col">Cover</th>
       </tr>
     </thead>
     <tbody>
@@ -43,18 +53,17 @@
           <% i++ %>
             <% if(i==10){ return}%>
               <tr>
-                <!-- <th scope="row"><%= song.name %></th> -->
                 <td>
-                  <%= song.name %>
-                </td>
-                <td>
-                  <%= song.dateOfRelease %>
+                  <%= song._id %>
                 </td>
                 <td>
                   <%= song.artist %>
                 </td>
                 <td>
-                  <%= song.cover %>
+                  <%= song.dateOfRelease %>
+                </td>
+                <td>
+                  <img src="<%= song.url %>" alt="">
                 </td>
               </tr>
               <%})%>

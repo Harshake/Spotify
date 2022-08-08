@@ -74,7 +74,7 @@
             </div>
         </div>
     </nav>
-    <form class="container" method="post" action="/song/addSong">
+    <form class="container" method="post" action="/song/addSong" enctype="multipart/form-data">
         <div class="form-group">
           <label for="exampleFormControlInput1">Song Name</label>
           <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name" name="name">
@@ -88,34 +88,41 @@
             <input type="file" class="form-control" id="exampleFormControlInput1" name="cover" accept="image/*">
         </div> 
           <div class="multi-selector">
+            
             <label for="Artists">Artists</label>
             <div class="select-field">
                 
        <input type="text" name="artists" placeholder="Choose tasks" id="" class="input-selector" multiple = "multiple">
+       
             <span class="down-arrow">&blacktriangledown;</span>
             </div>
             <div class="list">
-           
-              <label for="task1" class="task">
-                   <input type="checkbox" name="" id="task1">
-                   Task 1
+                <% var i = 0 %>
+                <% artist.forEach((artist)=>{ %>
+                    <% i++ %>
+              <label for="<%= i %>" class="task">
+                   <input type="checkbox" name="artists" id="task1" value = "<%= artist.name %>">
+                   <%= artist._id %>
             </label>
+            <%})%>
               <label for="task2" class="task">
-                   <input type="checkbox" name="" id="task2">
+                   <input type="checkbox" name="artists" id="task2">
                    Task 2
             </label>
               <label for="task3" class="task">
-                   <input type="checkbox" name="" id="task3">
+                   <input type="checkbox" name="artists" id="task3">
                    Task 3
             </label>
               <label for="task4" class="task">
-                   <input type="checkbox" name="" id="task4">
+                   <input type="checkbox" name="artists" id="task4">
                    Task 4
             </label>       
-            </div>    
+            </div>  
+            <a class="btn btn-outline-dark" href="/artist/addArtist" role="+Add Artist">+Add Artist</a>  
            </div> 
+           <br>
            <label for="submit">
-            <input type="submit">
+            <input class="btn btn-secondary btn-lg" type="submit">
            </label>
       </form>
       <script> 

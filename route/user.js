@@ -4,10 +4,23 @@ const path = require('path')
 const router = express.Router()
 const userSchema = require(path.join(__dirname, '../model/user'))
 
-router.get('/', async(req,res)=>{
+router.post('/', async (req, res) => {
+    const data = new userSchema({
+        _id: req.body.email,
+        name: req.body.name
+    })
+
     try {
-        const user = await userSchema.find()
-        res.json(user)
+        data.save()
+        res.render(path.join(__dirname, '../frontend/view/user.ejs'))
+    } catch (error) {
+        res.send("error")
+    }
+})
+
+router.get('/', async (req, res) => {
+    try {
+        res.render(path.join(__dirname, '../frontend/view/user.ejs'))
     } catch (error) {
         res.send("error")
     }
