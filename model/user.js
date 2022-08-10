@@ -8,6 +8,10 @@ const user = new mongoose.Schema({
     name : {
         type : String,
         required : true
+    },
+    songs : {
+        type : [String],
+        required : true
     }
 })
 

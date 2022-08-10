@@ -28,20 +28,39 @@ router.get('/addSong', async(req,res)=>{
 
 router.post('/addSong', upload.single("cover"), async(req,res)=>{
     try {
-        
-    const result = await cloudinary.uploader.upload(req.file.path);
-    var data = new songSchema({
-        _id: req.body.name,
-        dateOfRelease: req.body.dor,
-        artist: req.body.artist,
-        url : result.secure_url,
-        cloudinaryId : result.public_id
+        var artist = await artistSchema.find().sort({"name":1})   
+        const result = await cloudinary.uploader.upload(req.file.path);
+        var art = []
+        console.log(req.body)
+        for (let index = 0, j = 0; index < artist.length; index++) {
+            if(req.body.artists[j] == index){
+            const element = artist[index]._id;
+            art.push(element)
+            j++
+        }
+        }
+        var data = new songSchema({
+            _id: req.body.name,
+            dateOfRelease: req.body.dor,
+            artist: art,
+            url : result.secure_url,
+            cloudinaryId : result.public_id
+        })
+           data.save()
+        for (let index = 0; index < art.length; index++) {
+            artist = await artistSchema.find({_id : art[index]})
+            const add = req.body.name
+            artist[0].songs.push(add)
+            await artistSchema.updateOne({_id : art[index]},{
+            $set :{
+                songs : artist[0].songs
+            }
+        })
+        }
+           res.send("Song added succesfully")
+        } catch (error) {
+            res.send("error")
+        } 
     })
-       data.save()
-       res.render(path.join(__dirname,'../frontend/view/song.ejs'))
-    } catch (error) {
-        res.send("error")
-    } 
-})
 
 module.exports = router

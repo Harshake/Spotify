@@ -9,7 +9,7 @@ dotenv.config();
 
 
 const app = express()
-var fs = require('fs');
+app.use(express.json())
 const port = process.env.port    //Define port 
 const url = process.env.db_url
 app.set('view engine', ejs)

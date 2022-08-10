@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spotify</title>
   <style>
-    img{      
+    img {
       max-width: fit-content;
       max-height: fit-content;
       border: 1px solid #ddd;
@@ -45,6 +45,7 @@
         <th scope="col">Artists</th>
         <th scope="col">Date of release</th>
         <th scope="col">Cover</th>
+        <th scope="col">Rating</th>
       </tr>
     </thead>
     <tbody>
@@ -64,6 +65,17 @@
                 </td>
                 <td>
                   <img src="<%= song.url %>" alt="">
+                </td>
+                <td>
+                  <div class="star-wrapper">
+                    <a href="/user" class="fas fa-star s1"></a>
+                    <a href="/user" class="fas fa-star s2"></a>
+                    <a href="/user" class="fas fa-star s3"></a>
+                    <a href="/user" class="fas fa-star s4"></a>
+                    <a href="/user" class="fas fa-star s5"></a>
+                    <%= song.avgRating %>
+                  </div>
+                  <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
                 </td>
               </tr>
               <%})%>
